@@ -46,8 +46,8 @@ void Send_String(const char * str);
 uint8_t a = 0;
 
 char User_Data[6] = {0};
-uint32_t UiData[6] = {0};
-
+int UiData[6] = {0};
+//uint32_t
 
 /* USER CODE END PV */
 
@@ -120,6 +120,11 @@ int main(void)
     }
     
     Send_String(temp);
+    
+    if(UiData[1] == -15) {
+      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_SET);
+    }
+    
     
   }
   /* USER CODE END 3 */

@@ -34,7 +34,7 @@
 #include "usbd_cdc_if.h"
 /* USER CODE BEGIN INCLUDE */
 extern char User_Data[6];
-extern uint32_t UiData[6];
+extern int UiData[6];
 int temp = 0;
 
 /* USER CODE END INCLUDE */
@@ -279,6 +279,7 @@ static int8_t CDC_Receive_FS (uint8_t* Buf, uint32_t *Len)
     temp = 0;
     memset(User_Data, 0, sizeof(User_Data));
   }
+  
   
    
   //a = atoi((const char *) User_Data[0]);
