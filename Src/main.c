@@ -45,7 +45,9 @@ void Send_String(const char * str);
 /* Private variables ---------------------------------------------------------*/
 uint8_t a = 0;
 
-char User_Data[256] = {0};
+char User_Data[6] = {0};
+uint32_t UiData[6] = {0};
+
 
 /* USER CODE END PV */
 
@@ -64,7 +66,7 @@ static void MX_GPIO_Init(void);
 
 int main(void)
 {
-
+  
   /* USER CODE BEGIN 1 */
   char temp[] = " Hello World ";
   /* USER CODE END 1 */
@@ -94,7 +96,7 @@ int main(void)
   /* USER CODE BEGIN 3 */
     HAL_Delay(500);
   
-
+    
     if(User_Data[0] == '1') {
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);     
     }

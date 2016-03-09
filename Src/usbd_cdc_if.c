@@ -33,7 +33,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_cdc_if.h"
 /* USER CODE BEGIN INCLUDE */
-extern char User_Data[256];
+extern char User_Data[6];
+extern uint32_t UiData[6];
+int temp = 0;
+
 /* USER CODE END INCLUDE */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -256,6 +259,33 @@ static int8_t CDC_Receive_FS (uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
   memcpy(User_Data, Buf, *Len);
+  
+  
+//   if(User_Data[1] == 0) {
+//    temp = atoi(&User_Data[0]);
+//   }
+//   else {
+//     UiData[temp - 1] = atoi(&User_Data[0]);
+//     memset(User_Data, 0, sizeof(User_Data));
+//   }
+  
+  
+  if(temp == 0) {
+    temp = atoi(&User_Data[0]);
+  }
+  else {
+  
+    UiData[temp - 1] = atoi(&User_Data[0]);
+    temp = 0;
+    memset(User_Data, 0, sizeof(User_Data));
+  }
+  
+   
+  //a = atoi((const char *) User_Data[0]);
+  //UiData[a] = 
+  //UiData[atoi(User_Data[0])] = atoi(User_Data[1]);
+  
+  
   
   USBD_CDC_SetRxBuffer(hUsbDevice_0, &Buf[0]);
   USBD_CDC_ReceivePacket(hUsbDevice_0);
